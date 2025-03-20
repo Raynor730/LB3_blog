@@ -7,13 +7,13 @@ public partial class Post
 {
     public int Id { get; set; }
 
-    public int? IdUser { get; set; }
+    public int IdUser { get; set; }
 
-    public string? TIrle { get; set; }
+    public string Title { get; set; } = null!;
 
-    public string? Content { get; set; }
+    public string Content { get; set; } = null!;
 
-    public DateTime? DateOfPublication { get; set; }
+    public DateTime DateOfPublication { get; set; }
 
-    public virtual User? IdUserNavigation { get; set; }
+    public virtual User IdUserNavigation { get; set; } = null!;
 }

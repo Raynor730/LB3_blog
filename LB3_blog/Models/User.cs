@@ -14,4 +14,6 @@ public partial class User
     public string? Phone { get; set; }
 
     public DateTime? Birthday { get; set; }
+
+    public virtual ICollection<Post> Posts { get; set; } = new List<Post>();
 }

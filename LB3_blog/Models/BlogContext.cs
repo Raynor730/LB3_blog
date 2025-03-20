@@ -27,20 +27,19 @@ public partial class BlogContext : DbContext
     {
         modelBuilder.Entity<Post>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("posts");
+            entity.HasKey(e => e.Id).HasName("posts_pkey");
 
+            entity.ToTable("posts");
+
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Content).HasColumnName("content");
             entity.Property(e => e.DateOfPublication).HasColumnName("dateOfPublication");
-            entity.Property(e => e.Id)
-                .ValueGeneratedOnAdd()
-                .HasColumnName("id");
             entity.Property(e => e.IdUser).HasColumnName("idUser");
-            entity.Property(e => e.TIrle).HasColumnName("t irle");
+            entity.Property(e => e.Title).HasColumnName("title");
 
-            entity.HasOne(d => d.IdUserNavigation).WithMany()
+            entity.HasOne(d => d.IdUserNavigation).WithMany(p => p.Posts)
                 .HasForeignKey(d => d.IdUser)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_posts_users");
         });
 
