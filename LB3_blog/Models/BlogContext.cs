@@ -20,7 +20,6 @@ public partial class BlogContext : DbContext
     public virtual DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=blog;Username=postgres;Password=1111");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -37,7 +36,7 @@ public partial class BlogContext : DbContext
             entity.Property(e => e.IdUser).HasColumnName("idUser");
             entity.Property(e => e.Title).HasColumnName("title");
 
-            entity.HasOne(d => d.IdUserNavigation).WithMany(p => p.Posts)
+            entity.HasOne(d => d.User).WithMany(p => p.Posts)
                 .HasForeignKey(d => d.IdUser)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_posts_users");

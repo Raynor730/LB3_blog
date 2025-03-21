@@ -48,9 +48,13 @@
             dataGridViewUsers.Dock = DockStyle.Fill;
             dataGridViewUsers.Location = new Point(10, 10);
             dataGridViewUsers.Margin = new Padding(4);
+            dataGridViewUsers.MultiSelect = false;
             dataGridViewUsers.Name = "dataGridViewUsers";
+            dataGridViewUsers.ReadOnly = true;
+            dataGridViewUsers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewUsers.Size = new Size(486, 540);
             dataGridViewUsers.TabIndex = 0;
+            dataGridViewUsers.SelectionChanged += DataGridViewUsers_SelectionChanged;
             // 
             // buttonSave
             // 

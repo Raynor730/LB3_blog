@@ -1,4 +1,3 @@
-
 using System.ComponentModel;
 using LB3_blog.Models;
 using Microsoft.EntityFrameworkCore;
@@ -43,6 +42,7 @@ namespace LB3_blog
                 if (user != null)
                 {
                     this.db.Entry(user).Collection(e => e.Posts).Load();
+                    this.dataGridViewPosts.DataSource=user.Posts;
                 }
             }
         }
